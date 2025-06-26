@@ -30,7 +30,7 @@ class SnooClient:
     def __init__(self, email=None, password=None, baby_id=None):
         self.EMAIL = email or os.getenv('SNOO_USERNAME')
         self.PASSWORD = password or os.getenv('SNOO_PASSWORD')
-        self.BABY_ID = baby_id or '6249fba7523b900028604e80'
+        self.BABY_ID = baby_id or os.getenv('BABY_ID')
 
         self.aws_auth_url = 'https://cognito-idp.us-east-1.amazonaws.com/'
         self.snoo_auth_url = 'https://api-us-east-1-prod.happiestbaby.com/us/me/v10/pubnub/authorize'
