@@ -1,0 +1,14 @@
+# Python bytecode files
+__pycache__/
+*.pyc
+
+# Lambda deployment artifacts
+lambda-deployment/
+lambda-deployment.zip
+*.zip
+
+# Virtual environments
+venv/
+env/
+.venv/
+
