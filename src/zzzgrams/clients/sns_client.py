@@ -1,5 +1,6 @@
 import json
 import boto3
+import os
 from datetime import datetime
 from typing import Dict, Any
 
@@ -9,7 +10,7 @@ class SNSClient:
     
     def __init__(self, region_name: str = 'us-east-1'):
         self.sns = boto3.client('sns', region_name=region_name)
-        self.topic_arn = 'arn:aws:sns:us-east-1:982515757790:SleepAnalyzerTopic'
+        self.topic_arn = os.getenv('SNS_TOPIC_ARN', 'arn:aws:sns:us-west-2:123456789012:SleepAnalyzerTopic')
     
     def publish_sleep_analysis(self, ai_insights: str, sleep_data: Dict[str, Any]) -> bool:
         """

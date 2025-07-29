@@ -1,5 +1,17 @@
 import json
-from lambda_function import lambda_handler
+import sys
+import os
+
+# Add the src directory to the Python path
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
+
+# Import the lambda function
+try:
+    from lambda.lambda_function import lambda_handler
+except ImportError as e:
+    print(f"Import error: {e}")
+    print("Make sure you're running this from the project root directory")
+    sys.exit(1)
 
 # Mock context object
 class MockContext:
