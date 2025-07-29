@@ -3,30 +3,13 @@ import json
 import urllib
 from datetime import datetime as dt
 import os
-from dataclasses import dataclass
 from typing import Optional, Any
+from ..models.sleep_data import SleepData
 
-@dataclass
-class SleepData:
-    naps: int
-    longestSleep: float
-    totalSleep: float
-    daySleep: float
-    nightSleep: float
-    nightWakings: int
-
-    @staticmethod
-    def from_dict(data: dict) -> 'SleepData':
-        return SleepData(
-            naps=data.get('naps', 0),
-            longestSleep=round(data.get('longestSleep', 0) / 60, 1),
-            totalSleep=round(data.get('totalSleep', 0) / 60, 1),
-            daySleep=round(data.get('daySleep', 0) / 60, 1),
-            nightSleep=round(data.get('nightSleep', 0) / 60, 1),
-            nightWakings=data.get('nightWakings', 0)
-        )
 
 class SnooClient:
+    """Client for interacting with Snoo baby sleep tracking API"""
+    
     def __init__(self, email=None, password=None, baby_id=None):
         self.EMAIL = email or os.getenv('SNOO_USERNAME')
         self.PASSWORD = password or os.getenv('SNOO_PASSWORD')
@@ -112,6 +95,17 @@ class SnooClient:
         return {'aws': {'access': access, 'id': _id, 'refresh': ref}, 'snoo': snoo_token}
 
     def get_sleep_data(self, start_time='2025-06-21T00:00:00', end_time='2025-06-21T23:59:59', as_object: bool = True) -> Any:
+        """
+        Get sleep data from Snoo API
+        
+        Args:
+            start_time: Start time for data retrieval
+            end_time: End time for data retrieval
+            as_object: Whether to return as SleepData object or raw dict
+            
+        Returns:
+            SleepData object or dict depending on as_object parameter
+        """
         auth = self._authorize()
         id_token = auth['aws']['id']
         hdrs = self._generate_snoo_auth_headers(id_token)
@@ -120,4 +114,4 @@ class SnooClient:
         data = r.json()
         if as_object:
             return SleepData.from_dict(data)
-        return data
+        return data 
