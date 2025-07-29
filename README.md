@@ -118,13 +118,13 @@ export AWS_REGION="us-east-1"
 | `SNOO_USERNAME` | Snoo account email | Yes |
 | `SNOO_PASSWORD` | Snoo account password | Yes |
 | `BABY_ID` | Baby's unique identifier | Yes |
-| `SNS_TOPIC_ARN` | SNS topic ARN for notifications | No (default: arn:aws:sns:us-east-1:982515757790:SleepAnalyzerTopic) |
+| `SNS_TOPIC_ARN` | SNS topic ARN for notifications | No (default: arn:aws:sns:us-east-1:1234567890:SleepAnalyzerTopic) |
 | `AWS_REGION` | AWS region for services | No (default: us-east-1) |
 
 ### AWS Services Configuration
 
 - **Lambda Function**: `zzzgrams-sleep-analyzer`
-- **SNS Topic**: `arn:aws:sns:us-east-1:982515757790:SleepAnalyzerTopic`
+- **SNS Topic**: `arn:aws:sns:us-east-1:1234567890:SleepAnalyzerTopic`
 - **Bedrock Model**: `amazon.titan-text-premier-v1:0`
 
 ## API Response Format
