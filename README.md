@@ -1,4 +1,4 @@
-# ZzzGrams
+# SnoozGrams
 
 Sleep quips from a newborn baby. 
 
